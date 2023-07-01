@@ -1,17 +1,20 @@
-﻿using System.Linq.Expressions;
+﻿using Serialize.Linq.Serializers;
+using System.Linq.Expressions;
 
 namespace QuickActions.Common.Specifications
 {
     public class Specification<T> : ISpecification<T> where T : class
     {
+        public string ExpressionString { get; set; }
+
+        protected Expression<Func<T, bool>> Predicate { get => (Expression<Func<T, bool>>)serializer.DeserializeText(ExpressionString); set => ExpressionString = serializer.SerializeText(value); }
+
         private Func<T, bool> _function;
+        private Func<T, bool> Function => _function ??= Predicate.Compile();
 
-        private Func<T, bool> Function => _function
-            ?? (_function = Predicate.Compile());
+        private readonly ExpressionSerializer serializer = new(new JsonSerializer());
 
-        protected Expression<Func<T, bool>> Predicate;
-
-        protected Specification() { }
+        public Specification() { }
 
         public Specification(Expression<Func<T, bool>> predicate)
         {

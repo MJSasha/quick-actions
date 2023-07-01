@@ -25,14 +25,14 @@ namespace QuickActions.Api
             await repository.Create(entities);
         }
 
-        [HttpGet("")]
-        public async Task<TEntity> Read([FromBody] ISpecification<TEntity> specification)
+        [HttpPost("Read")]
+        public async Task<TEntity> Read([FromBody] Specification<TEntity> specification)
         {
             return await repository.Read(specification.ToExpression());
         }
 
-        [HttpGet("Many")]
-        public async Task<List<TEntity>> Read([FromBody] ISpecification<TEntity> specification, [FromQuery] int start, [FromQuery] int skip)
+        [HttpPost("Read/Many")]
+        public async Task<List<TEntity>> Read([FromBody] Specification<TEntity> specification, [FromQuery] int start, [FromQuery] int skip)
         {
             return await repository.Read(specification.ToExpression(), start, skip);
         }
@@ -44,7 +44,7 @@ namespace QuickActions.Api
         }
 
         [HttpDelete("")]
-        public async Task Delete([FromBody] ISpecification<TEntity> specification)
+        public async Task Delete([FromBody] Specification<TEntity> specification)
         {
             await repository.Delete(specification.ToExpression());
         }

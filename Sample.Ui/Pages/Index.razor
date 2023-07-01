@@ -1,0 +1,34 @@
+﻿@page "/"
+@using QuickActions.Common.Specifications;
+@using Sample.Common.Interfaces;
+@using Sample.Common.Models;
+
+@if (User != null && Users != null)
+{
+    <h1>Sasha:</h1>
+
+    <div>@User.Name</div>
+    <div>@User.Email</div>
+    <div>@User.Phone</div>
+
+    <h1>Other users:</h1>
+
+    @foreach (var item in Users)
+    {
+        <div>@item.Name</div>
+    }
+}
+
+@code {
+    [Inject]
+    public IUsers UsersService { get; set; }
+
+    public List<User> Users { get; set; }
+    public User User { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        User = await UsersService.Read(new Specification<User>(u => u.Name == "Sasha"));
+        Users = await UsersService.Read(new Specification<User>(u => u.Name != "Sasha"), 0, int.MaxValue);
+    }
+}
