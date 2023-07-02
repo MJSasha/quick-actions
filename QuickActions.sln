@@ -7,14 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickActions.Api", "QuickAc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickActions.Common", "QuickActions.Domains\QuickActions.Common.csproj", "{FCF551D2-6FDE-41BF-9DA4-AD912BE124BB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "QuickActions.Samples", "QuickActions.Samples", "{04A1B245-2064-4A1E-8647-62BF8ACF94DC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Api", "Sample.Api\Sample.Api.csproj", "{F39E2128-85AD-4E4C-9A7C-AAD4640201E8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Common", "Sample.Common\Sample.Common.csproj", "{B1B3CB92-AABF-4EC4-B610-D09C533D7FC2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Ui", "Sample.Ui\Sample.Ui.csproj", "{296266B1-038D-4B0A-B8CD-85549D87197D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug Optimize Size|Any CPU = Debug Optimize Size|Any CPU
@@ -39,38 +31,9 @@ Global
 		{FCF551D2-6FDE-41BF-9DA4-AD912BE124BB}.Release Optimize Size|Any CPU.Build.0 = Release|Any CPU
 		{FCF551D2-6FDE-41BF-9DA4-AD912BE124BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCF551D2-6FDE-41BF-9DA4-AD912BE124BB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F39E2128-85AD-4E4C-9A7C-AAD4640201E8}.Debug Optimize Size|Any CPU.ActiveCfg = Debug|Any CPU
-		{F39E2128-85AD-4E4C-9A7C-AAD4640201E8}.Debug Optimize Size|Any CPU.Build.0 = Debug|Any CPU
-		{F39E2128-85AD-4E4C-9A7C-AAD4640201E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F39E2128-85AD-4E4C-9A7C-AAD4640201E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F39E2128-85AD-4E4C-9A7C-AAD4640201E8}.Release Optimize Size|Any CPU.ActiveCfg = Release|Any CPU
-		{F39E2128-85AD-4E4C-9A7C-AAD4640201E8}.Release Optimize Size|Any CPU.Build.0 = Release|Any CPU
-		{F39E2128-85AD-4E4C-9A7C-AAD4640201E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F39E2128-85AD-4E4C-9A7C-AAD4640201E8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B1B3CB92-AABF-4EC4-B610-D09C533D7FC2}.Debug Optimize Size|Any CPU.ActiveCfg = Debug|Any CPU
-		{B1B3CB92-AABF-4EC4-B610-D09C533D7FC2}.Debug Optimize Size|Any CPU.Build.0 = Debug|Any CPU
-		{B1B3CB92-AABF-4EC4-B610-D09C533D7FC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B1B3CB92-AABF-4EC4-B610-D09C533D7FC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B1B3CB92-AABF-4EC4-B610-D09C533D7FC2}.Release Optimize Size|Any CPU.ActiveCfg = Release|Any CPU
-		{B1B3CB92-AABF-4EC4-B610-D09C533D7FC2}.Release Optimize Size|Any CPU.Build.0 = Release|Any CPU
-		{B1B3CB92-AABF-4EC4-B610-D09C533D7FC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B1B3CB92-AABF-4EC4-B610-D09C533D7FC2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{296266B1-038D-4B0A-B8CD-85549D87197D}.Debug Optimize Size|Any CPU.ActiveCfg = Debug|Any CPU
-		{296266B1-038D-4B0A-B8CD-85549D87197D}.Debug Optimize Size|Any CPU.Build.0 = Debug|Any CPU
-		{296266B1-038D-4B0A-B8CD-85549D87197D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{296266B1-038D-4B0A-B8CD-85549D87197D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{296266B1-038D-4B0A-B8CD-85549D87197D}.Release Optimize Size|Any CPU.ActiveCfg = Release|Any CPU
-		{296266B1-038D-4B0A-B8CD-85549D87197D}.Release Optimize Size|Any CPU.Build.0 = Release|Any CPU
-		{296266B1-038D-4B0A-B8CD-85549D87197D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{296266B1-038D-4B0A-B8CD-85549D87197D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{F39E2128-85AD-4E4C-9A7C-AAD4640201E8} = {04A1B245-2064-4A1E-8647-62BF8ACF94DC}
-		{B1B3CB92-AABF-4EC4-B610-D09C533D7FC2} = {04A1B245-2064-4A1E-8647-62BF8ACF94DC}
-		{296266B1-038D-4B0A-B8CD-85549D87197D} = {04A1B245-2064-4A1E-8647-62BF8ACF94DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5EAA53E8-543B-4072-9E7F-29F32F93CA05}
