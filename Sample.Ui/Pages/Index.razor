@@ -10,6 +10,7 @@
     <div>@User.Name</div>
     <div>@User.Email</div>
     <div>@User.Phone</div>
+    <div>@User.Role.Name</div>
 
     <h1>Other users:</h1>
 
@@ -28,7 +29,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        User = await UsersService.Read(new Specification<User>(u => u.Name == "Sasha"));
+        User = await UsersService.Read(new Specification<User>(u => u.Name == "Sasha").Include(u => u.Role));
         // new Specification<User>() -- All users
         // new Specification<User>(u => u.Name != "Sasha" || u.Phone == "789")
         Users = await UsersService.Read(new UserByPhoneAndNotNameSpec("Sasha", "789"), 0, int.MaxValue);
