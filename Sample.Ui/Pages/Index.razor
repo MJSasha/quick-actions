@@ -29,6 +29,7 @@
     protected override async Task OnInitializedAsync()
     {
         User = await UsersService.Read(new Specification<User>(u => u.Name == "Sasha"));
+        // new Specification<User>() -- All users
         // new Specification<User>(u => u.Name != "Sasha" || u.Phone == "789")
         Users = await UsersService.Read(new UserByPhoneAndNotNameSpec("Sasha", "789"), 0, int.MaxValue);
     }

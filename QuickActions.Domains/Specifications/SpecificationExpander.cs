@@ -18,7 +18,7 @@ namespace QuickActions.Common.Specifications
                     if (declaringType.GetTypeInfo().IsGenericType
                         && declaringType.GetGenericTypeDefinition() == typeof(Specification<>))
                     {
-                        const string name = nameof(Specification<object>.ToExpression);
+                        const string name = nameof(Specification<object>.GetExpression);
 
                         MethodInfo toExpression = declaringType.GetMethod(name);
 
@@ -34,7 +34,7 @@ namespace QuickActions.Common.Specifications
         {
             MethodInfo method = node.Method;
 
-            if (method.Name == nameof(ISpecification<object>.ToExpression))
+            if (method.Name == nameof(ISpecification<object>.GetExpression))
             {
                 Type declaringType = method.DeclaringType;
                 Type[] interfaces = declaringType.GetTypeInfo().GetInterfaces();

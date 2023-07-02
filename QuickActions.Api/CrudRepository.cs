@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using QuickActions.Common.Specifications;
 using System.Linq.Expressions;
 
 namespace QuickActions.Api
@@ -25,14 +27,15 @@ namespace QuickActions.Api
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<TEntity> Read(Expression<Func<TEntity, bool>> expression)
+        public async Task<TEntity> Read(ISpecification<TEntity> specification)
         {
-            return (await Read(expression, 0, 1)).FirstOrDefault(); ;
+            return (await Read(specification, 0, 1)).FirstOrDefault(); ;
         }
 
-        public Task<List<TEntity>> Read(Expression<Func<TEntity, bool>> expression, int start, int skip)
+        public Task<List<TEntity>> Read(ISpecification<TEntity> specification, int start, int skip)
         {
-            return dbSet.Where(expression).Skip(start).Take(skip).AsNoTrackingWithIdentityResolution().ToListAsync();
+            var entry = IncludeProperties(specification.GetIncludes());
+            return entry.Where(specification.GetExpression()).Skip(start).Take(skip).AsNoTrackingWithIdentityResolution().ToListAsync();
         }
 
         public async Task Update(TEntity entity)
@@ -41,11 +44,17 @@ namespace QuickActions.Api
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task Delete(Expression<Func<TEntity, bool>> expression)
+        public async Task Delete(ISpecification<TEntity> specification)
         {
-            var entitiesToRemove = await Read(expression, 0, int.MaxValue);
+            var entitiesToRemove = await Read(specification, 0, int.MaxValue);
             dbSet.RemoveRange(entitiesToRemove);
             await dbContext.SaveChangesAsync();
+        }
+
+        protected IQueryable<TEntity> IncludeProperties(IEnumerable<Expression<Func<TEntity, object>>> includeProperties)
+        {
+            if (!includeProperties.Any()) return dbSet;
+            return includeProperties.Aggregate(dbSet.AsNoTracking(), (query, includeProperty) => query.Include(includeProperty));
         }
     }
 }
