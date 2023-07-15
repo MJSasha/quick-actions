@@ -6,7 +6,7 @@ namespace QuickActions.Common.Interfaces
     public interface ICrud<TEntity> where TEntity : class
     {
         [Post("")]
-        public Task Create([Body]  TEntity entity);
+        public Task Create([Body] TEntity entity);
         [Post("/Many")]
         public Task Create([Body] IEnumerable<TEntity> entities);
         [Post("/Read")]

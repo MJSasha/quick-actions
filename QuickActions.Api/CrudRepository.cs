@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using QuickActions.Common.Specifications;
 using System.Linq.Expressions;
 
