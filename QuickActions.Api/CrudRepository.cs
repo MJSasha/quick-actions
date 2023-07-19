@@ -15,35 +15,35 @@ namespace QuickActions.Api
             dbSet = dbContext.Set<TEntity>();
         }
 
-        public Task Create(TEntity entity)
+        public virtual Task Create(TEntity entity)
         {
             return Create(new[] { entity });
         }
 
-        public async Task Create(IEnumerable<TEntity> entities)
+        public virtual async Task Create(IEnumerable<TEntity> entities)
         {
             await dbSet.AddRangeAsync(entities);
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task<TEntity> Read(ISpecification<TEntity> specification)
+        public virtual async Task<TEntity> Read(ISpecification<TEntity> specification)
         {
             return (await Read(specification, 0, 1)).FirstOrDefault(); ;
         }
 
-        public Task<List<TEntity>> Read(ISpecification<TEntity> specification, int start, int skip)
+        public virtual Task<List<TEntity>> Read(ISpecification<TEntity> specification, int start, int skip)
         {
             var entry = IncludeProperties(specification.GetIncludes());
             return entry.Where(specification.GetExpression()).Skip(start).Take(skip).AsNoTrackingWithIdentityResolution().ToListAsync();
         }
 
-        public async Task Update(TEntity entity)
+        public virtual async Task Update(TEntity entity)
         {
             dbContext.Entry(entity).State = EntityState.Modified;
             await dbContext.SaveChangesAsync();
         }
 
-        public async Task Delete(ISpecification<TEntity> specification)
+        public virtual async Task Delete(ISpecification<TEntity> specification)
         {
             var entitiesToRemove = await Read(specification, 0, int.MaxValue);
             dbSet.RemoveRange(entitiesToRemove);
