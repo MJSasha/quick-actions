@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\QuickActions.Domains\QuickActions.Common.csproj" />
+    <ProjectReference Include="..\QuickActions.Common\QuickActions.Common.csproj" />
   </ItemGroup>
 
 </Project>

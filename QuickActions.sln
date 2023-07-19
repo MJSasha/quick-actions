@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickActions.Api", "QuickActions.Api\QuickActions.Api.csproj", "{F7A6A8BE-ABB3-431A-B89F-BAFFE1D05934}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickActions.Common", "QuickActions.Domains\QuickActions.Common.csproj", "{FCF551D2-6FDE-41BF-9DA4-AD912BE124BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickActions.Common", "QuickActions.Common\QuickActions.Common.csproj", "{FCF551D2-6FDE-41BF-9DA4-AD912BE124BB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickActions.Api.Identity", "QuickActions.Api.Identity\QuickActions.Api.Identity.csproj", "{62D86892-6118-4C39-941E-DA4C8DF73C14}"
 EndProject
