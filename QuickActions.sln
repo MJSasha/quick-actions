@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickActions.Api", "QuickAc
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "QuickActions.Common", "QuickActions.Domains\QuickActions.Common.csproj", "{FCF551D2-6FDE-41BF-9DA4-AD912BE124BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickActions.Api.Identity", "QuickActions.Authorization\QuickActions.Api.Identity.csproj", "{62D86892-6118-4C39-941E-DA4C8DF73C14}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickActions.Api.Identity", "QuickActions.Api.Identity\QuickActions.Api.Identity.csproj", "{62D86892-6118-4C39-941E-DA4C8DF73C14}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2559BFCA-E0F7-41A9-9321-8E74707A6282}"
 	ProjectSection(SolutionItems) = preProject
