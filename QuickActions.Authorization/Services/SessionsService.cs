@@ -10,12 +10,14 @@ namespace QuickActions.Api.Identity.Services
         private readonly IHttpContextAccessor httpContextAccessor;
         private readonly string keyName;
         private readonly long sessionLifeTime;
+        private readonly Func<Session<T>, string[], bool> rolesChecker;
 
-        public SessionsService(IHttpContextAccessor httpContextAccessor, string keyName, long sessionLifeTime)
+        public SessionsService(IHttpContextAccessor httpContextAccessor, string keyName, long sessionLifeTime, Func<Session<T>, string[], bool> rolesChecker)
         {
             this.httpContextAccessor = httpContextAccessor;
             this.keyName = keyName;
             this.sessionLifeTime = sessionLifeTime;
+            this.rolesChecker = rolesChecker;
         }
 
         public string CreateSession(Session<T> session)
@@ -62,6 +64,14 @@ namespace QuickActions.Api.Identity.Services
             context ??= httpContextAccessor.HttpContext;
             var key = context.Request.Cookies[keyName];
             DeleteSession(key);
+        }
+
+        public bool CheckAcess(string[] roleNames = null)
+        {
+            var session = ReadSession();
+            if (session == null) return false;
+            if (roleNames != null && roleNames.Any()) return rolesChecker?.Invoke(session, roleNames) ?? true;
+            else return true;
         }
 
         private void DeleteExpiredSessions()
