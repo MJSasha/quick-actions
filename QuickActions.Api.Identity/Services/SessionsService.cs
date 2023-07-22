@@ -9,10 +9,10 @@ namespace QuickActions.Api.Identity.Services
 
         private readonly IHttpContextAccessor httpContextAccessor;
         private readonly string keyName;
-        private readonly long sessionLifeTime;
+        private readonly int sessionLifeTime;
         private readonly Func<Session<T>, string[], bool> rolesChecker;
 
-        public SessionsService(IHttpContextAccessor httpContextAccessor, string keyName, long sessionLifeTime, Func<Session<T>, string[], bool> rolesChecker)
+        public SessionsService(IHttpContextAccessor httpContextAccessor, string keyName, int sessionLifeTime, Func<Session<T>, string[], bool> rolesChecker)
         {
             this.httpContextAccessor = httpContextAccessor;
             this.keyName = keyName;
@@ -66,7 +66,7 @@ namespace QuickActions.Api.Identity.Services
             DeleteSession(key);
         }
 
-        public bool CheckAcess(string[] roleNames = null)
+        public bool CheckAccess(string[] roleNames = null)
         {
             var session = ReadSession();
             if (session == null) return false;
@@ -78,7 +78,7 @@ namespace QuickActions.Api.Identity.Services
         {
             lock (sessions)
             {
-                var sessionsKeysToDelete = sessions.Where(s => s.Value.CreatedAt <= DateTime.UtcNow.AddMinutes(sessionLifeTime)).Select(s => s.Key).ToList();
+                var sessionsKeysToDelete = sessions.Where(s => s.Value.CreatedAt <= DateTime.UtcNow.AddMinutes(-sessionLifeTime)).Select(s => s.Key).ToList();
                 sessionsKeysToDelete.ForEach(str => sessions.Remove(str));
             }
         }
