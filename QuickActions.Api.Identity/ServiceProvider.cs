@@ -19,8 +19,6 @@ namespace QuickActions.Api.Identity
                 sessionLifeTime,
                 rolesChecker));
 
-            services.AddScoped<IdentityInterceptor<T>>();
-
             return services;
         }
     }
