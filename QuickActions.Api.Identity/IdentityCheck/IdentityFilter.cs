@@ -26,11 +26,20 @@ namespace QuickActions.Api.Identity.IdentityCheck
             var controller = context.Controller.GetType();
             var actionName = (context.ActionDescriptor as ControllerActionDescriptor)?.ActionName;
 
-            MethodBase method = controller.GetMethod(actionName);
-            var identity = (IdentityAttribute)method.GetCustomAttributes(typeof(IdentityAttribute), true).FirstOrDefault();
+            var identityAll = (IdentityAllAttribute)controller.GetCustomAttributes(typeof(IdentityAllAttribute), true).FirstOrDefault();
 
-            if (identity == null) return;
-            bool isIdentityMatched = sessionsService.CheckAccess(identity.RoleNames);
+            bool isIdentityMatched;
+            if (identityAll == null)
+            {
+                MethodBase method = controller.GetMethod(actionName);
+                var identity = (IdentityAttribute)method.GetCustomAttributes(typeof(IdentityAttribute), true).FirstOrDefault();
+                if (identity == null) return;
+                isIdentityMatched = sessionsService.CheckAccess(identity.RoleNames);
+            }
+            else
+            {
+                isIdentityMatched = sessionsService.CheckAccess(identityAll.RoleNames);
+            }
 
             if (!isIdentityMatched)
             {
