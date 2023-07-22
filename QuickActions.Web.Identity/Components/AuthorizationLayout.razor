@@ -1,0 +1,30 @@
+@using Microsoft.AspNetCore.Components.Authorization
+@using QuickActions.Web.Identity.Services;
+
+@typeparam TSession
+
+<CascadingValue Value="SessionService.SessionData">
+    <CascadingAuthenticationState>
+        <AuthorizeView>
+            <Authorized>
+                @Authorized
+            </Authorized>
+            <NotAuthorized>
+                @NotAuthorized
+            </NotAuthorized>
+        </AuthorizeView>
+    </CascadingAuthenticationState>
+</CascadingValue>
+
+@code {
+
+    [Inject]
+    public SessionService<TSession> SessionService { get; set; }
+
+    [Parameter]
+    public RenderFragment Authorized { get; set; }
+
+    [Parameter]
+    public RenderFragment NotAuthorized { get; set; }
+
+}
