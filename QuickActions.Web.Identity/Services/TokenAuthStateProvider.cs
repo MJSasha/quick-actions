@@ -53,8 +53,7 @@ namespace QuickActions.Web.Identity.Services
         private static AuthenticationState GetStateAnonymous()
         {
             var anonymous = new ClaimsPrincipal(new ClaimsIdentity());
-            var state = new AuthenticationState(anonymous);
-            return state;
+            return new AuthenticationState(anonymous);
         }
     }
 }

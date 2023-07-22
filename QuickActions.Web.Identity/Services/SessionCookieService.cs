@@ -4,8 +4,8 @@ namespace QuickActions.Web.Identity
 {
     public class SessionCookieService
     {
+        protected readonly string keyName;
         private readonly IJSRuntime jSRuntime;
-        private readonly string keyName;
 
         public SessionCookieService(IJSRuntime jSRuntime, string keyName)
         {
@@ -13,12 +13,12 @@ namespace QuickActions.Web.Identity
             this.keyName = keyName;
         }
 
-        public async Task WriteSessionKey(string value, int days = 365)
+        public virtual async Task WriteSessionKey(string value, int days = 365)
         {
             await jSRuntime.InvokeVoidAsync("WriteCookie.WriteCookie", keyName, value, days);
         }
 
-        public async Task<string> ReadSessionKey()
+        public virtual async Task<string> ReadSessionKey()
         {
             return await jSRuntime.InvokeAsync<string>("ReadCookie.ReadCookie", keyName);
         }
