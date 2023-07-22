@@ -7,7 +7,7 @@ namespace QuickActions.Web.Identity
     {
         public static IServiceCollection AddIdentity<T>(this IServiceCollection services, string keyName)
         {
-            services.AddTransient(sp => new CookieService(sp.GetRequiredService<IJSRuntime>(), keyName));
+            services.AddTransient(sp => new SessionCookieService(sp.GetRequiredService<IJSRuntime>(), keyName));
 
             return services;
         }

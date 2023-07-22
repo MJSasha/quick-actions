@@ -2,12 +2,12 @@
 
 namespace QuickActions.Web.Identity
 {
-    public class CookieService
+    public class SessionCookieService
     {
         private readonly IJSRuntime jSRuntime;
         private readonly string keyName;
 
-        public CookieService(IJSRuntime jSRuntime, string keyName)
+        public SessionCookieService(IJSRuntime jSRuntime, string keyName)
         {
             this.jSRuntime = jSRuntime;
             this.keyName = keyName;
