@@ -15,7 +15,7 @@ namespace QuickActions.Web.Identity
 
         public async Task WriteSessionKey(string value, int days = 365)
         {
-            await jSRuntime.InvokeVoidAsync("window.WriteCookie", keyName, value, days);
+            await jSRuntime.InvokeVoidAsync("WriteCookie.WriteCookie", keyName, value, days);
         }
 
         public async Task<string> ReadSessionKey()
