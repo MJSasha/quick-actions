@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using QuickActions.Api.Identity.Services;
+using QuickActions.Common.Exceptions;
 using System.Net;
 using System.Reflection;
-using System.Web.Http;
 
 namespace QuickActions.Api.Identity.IdentityCheck
 {
@@ -34,7 +34,7 @@ namespace QuickActions.Api.Identity.IdentityCheck
 
             if (!isIdentityMatched)
             {
-                throw new HttpResponseException(HttpStatusCode.Forbidden);
+                throw new ResponseException(HttpStatusCode.Forbidden);
             }
         }
     }

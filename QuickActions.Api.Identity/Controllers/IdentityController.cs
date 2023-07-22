@@ -1,9 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using QuickActions.Api.Identity.Services;
+﻿using QuickActions.Api.Identity.Services;
 using QuickActions.Common.Data;
+using QuickActions.Common.Exceptions;
 using QuickActions.Common.Interfaces;
 using System.Net;
-using System.Web.Http;
 using HttpPostAttribute = Microsoft.AspNetCore.Mvc.HttpPostAttribute;
 
 namespace QuickActions.Api.Identity.Controllers
@@ -26,7 +25,7 @@ namespace QuickActions.Api.Identity.Controllers
         [HttpPost("authenticate")]
         public virtual async Task<Session<T>> Authenticate()
         {
-            return sessionsService.ReadSession() ?? throw new HttpResponseException(HttpStatusCode.Unauthorized);
+            return sessionsService.ReadSession() ?? throw new ResponseException(HttpStatusCode.Unauthorized);
         }
     }
 }

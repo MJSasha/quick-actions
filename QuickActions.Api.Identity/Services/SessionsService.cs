@@ -35,7 +35,7 @@ namespace QuickActions.Api.Identity.Services
         {
             DeleteExpiredSessions();
             if (string.IsNullOrWhiteSpace(key)) return default;
-            
+
             lock (sessions)
             {
                 return sessions.GetValueOrDefault(key);
