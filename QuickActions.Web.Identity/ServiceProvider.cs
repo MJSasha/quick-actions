@@ -15,6 +15,7 @@ namespace QuickActions.Web.Identity
             services.AddOptions();
             services.AddAuthorizationCore();
 
+            services.AddScoped<TokenAuthStateProvider<T>>();
             services.AddScoped<AuthenticationStateProvider, TokenAuthStateProvider<T>>();
 
             if (!useCustomStorageService) services.AddScoped(sp => new SessionCookieService(sp.GetRequiredService<IJSRuntime>(), keyName));
