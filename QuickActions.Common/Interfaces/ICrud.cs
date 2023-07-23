@@ -5,7 +5,7 @@ namespace QuickActions.Common.Interfaces
 {
     public interface ICrud<TEntity> where TEntity : class
     {
-        [Post("")]
+        [Post("/")]
         public Task Create([Body] TEntity entity);
         [Post("/Many")]
         public Task Create([Body] IEnumerable<TEntity> entities);
@@ -13,9 +13,9 @@ namespace QuickActions.Common.Interfaces
         public Task<TEntity> Read([Body] Specification<TEntity> specification);
         [Post("/Read/Many")]
         public Task<List<TEntity>> Read([Body] Specification<TEntity> specification, [Query] int start, [Query] int skip);
-        [Patch("")]
+        [Patch("/")]
         public Task Update([Body] TEntity entity);
-        [Delete("")]
+        [Delete("/")]
         public Task Delete([Body] Specification<TEntity> specification);
     }
 }
