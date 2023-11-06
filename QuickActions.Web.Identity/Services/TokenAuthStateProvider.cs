@@ -8,11 +8,13 @@ namespace QuickActions.Web.Identity.Services
     {
         private readonly SessionCookieService sessionCookieService;
         private readonly IIdentity<T> identityService;
+        private readonly SessionService<T> sessionService;
 
-        public TokenAuthStateProvider(SessionCookieService sessionCookieService, IIdentity<T> identityService)
+        public TokenAuthStateProvider(SessionCookieService sessionCookieService, IIdentity<T> identityService, SessionService<T> sessionService)
         {
             this.sessionCookieService = sessionCookieService;
             this.identityService = identityService;
+            this.sessionService = sessionService;
         }
 
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
@@ -22,7 +24,7 @@ namespace QuickActions.Web.Identity.Services
                 var sessionKey = await sessionCookieService.ReadSessionKey();
                 if (!string.IsNullOrWhiteSpace(sessionKey))
                 {
-                    await identityService.Authenticate();
+                    await sessionService.RefreshSession();
                     var claims = new List<Claim>()
                     {
                         new Claim(ClaimTypes.Authentication, sessionKey)
