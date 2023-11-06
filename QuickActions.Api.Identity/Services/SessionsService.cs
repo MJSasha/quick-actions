@@ -45,7 +45,7 @@ namespace QuickActions.Api.Identity.Services
         public Session<T> ReadSession(HttpContext context = null)
         {
             context ??= httpContextAccessor.HttpContext;
-            var key = context.Request.Cookies[keyName];
+            var key = GetKey(context);
             return ReadSession(key);
         }
 
@@ -62,7 +62,7 @@ namespace QuickActions.Api.Identity.Services
         public void DeleteSession(HttpContext context = null)
         {
             context ??= httpContextAccessor.HttpContext;
-            var key = context.Request.Cookies[keyName];
+            var key = GetKey(context);
             DeleteSession(key);
         }
 
@@ -72,6 +72,11 @@ namespace QuickActions.Api.Identity.Services
             if (session == null) return false;
             if (roleNames != null && roleNames.Any()) return rolesChecker?.Invoke(session, roleNames) ?? true;
             else return true;
+        }
+
+        private string GetKey(HttpContext context)
+        {
+            return context.Request.Headers["Authorization"];
         }
 
         private void DeleteExpiredSessions()
