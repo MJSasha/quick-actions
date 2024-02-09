@@ -3,6 +3,8 @@
 
 @typeparam TSession
 
+@implements IDisposable
+
 <CascadingValue Value="SessionService.SessionData">
     <CascadingAuthenticationState>
         <AuthorizeView>
@@ -27,4 +29,18 @@
     [Parameter]
     public RenderFragment NotAuthorized { get; set; }
 
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        SessionService.OnRefreshSession += OnSessionChanged;
+    }
+
+    private Task OnSessionChanged(TSession user) => InvokeAsync(StateHasChanged);
+
+    void IDisposable.Dispose()
+    {
+        SessionService.OnRefreshSession -= OnSessionChanged;
+    }
 }
