@@ -5,7 +5,7 @@ namespace QuickActions.Web.Identity.Services
 {
     public class SessionService<T>
     {
-        public Func<T, Task> OnRefreshSession {  get; set; }
+        public Func<T, Task> OnRefreshSession { get; set; }
         public Session<T> SessionData { get; set; }
 
         private readonly IIdentity<T> identityService;
