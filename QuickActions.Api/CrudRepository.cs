@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System.Linq.Expressions;
+using Microsoft.EntityFrameworkCore;
 using QuickActions.Common.Specifications;
-using System.Linq.Expressions;
 
 namespace QuickActions.Api
 {
@@ -9,7 +9,7 @@ namespace QuickActions.Api
         private readonly DbContext dbContext;
         private readonly DbSet<TEntity> dbSet;
 
-        public CrudRepository(DbContext dbContext)
+        protected CrudRepository(DbContext dbContext)
         {
             this.dbContext = dbContext;
             dbSet = dbContext.Set<TEntity>();
@@ -28,7 +28,7 @@ namespace QuickActions.Api
 
         public virtual async Task<TEntity> Read(ISpecification<TEntity> specification)
         {
-            return (await Read(specification, 0, 1)).FirstOrDefault(); ;
+            return (await Read(specification, 0, 1)).FirstOrDefault();
         }
 
         public virtual Task<List<TEntity>> Read(ISpecification<TEntity> specification, int start, int skip)

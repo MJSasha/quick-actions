@@ -8,7 +8,7 @@ namespace QuickActions.Api
     {
         private readonly CrudRepository<TEntity> repository;
 
-        public CrudController(CrudRepository<TEntity> repository)
+        protected CrudController(CrudRepository<TEntity> repository)
         {
             this.repository = repository;
         }
@@ -32,7 +32,7 @@ namespace QuickActions.Api
         }
 
         [HttpPost("Read/Many")]
-        public virtual async Task<List<TEntity>> Read([FromBody] Specification<TEntity> specification, [FromQuery] int start, [FromQuery] int skip)
+        public virtual async Task<List<TEntity>> ReadMany([FromBody] Specification<TEntity> specification, [FromQuery] int start, [FromQuery] int skip)
         {
             return await repository.Read(specification, start, skip);
         }
