@@ -4,10 +4,21 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Authors>MJsasha</Authors>
+    <Copyright>MIT</Copyright>
+    <PackageProjectUrl>https://github.com/MJSasha/quick-actions</PackageProjectUrl>
+    <PackageLicenseUrl>https://github.com/MJSasha/quick-actions/blob/master/LICENSE</PackageLicenseUrl>
+    <PackageIcon>snap.png</PackageIcon>
+    <RepositoryUrl>https://github.com/MJSasha/quick-actions</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\.editorconfig" Link=".editorconfig" />
+    <None Include="..\img\snap.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+      <Link>snap.png</Link>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
